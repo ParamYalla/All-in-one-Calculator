@@ -1,0 +1,535 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        width: 500px;
+        margin: 4% auto;
+        font-family: "Source Sans Pro", sans-serif;
+        letter-spacing: 5px;
+        font-size: 1.8rem;
+        background-color: #000000;
+        background-image: linear-gradient(19deg, #00d0ff 0%, #0008ff 100%);
+
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+      }
+
+      .calculator {
+        padding: 20px;
+        -webkit-box-shadow: 0px 1px 4px 0px #000000;
+        background-color: #f5f5f5;
+        box-shadow: 0px 1px 15px 0px rgba(0, 0, 0, 0.6);
+        border-radius: 15px;
+      }
+
+      .input {
+        border: 1px solid #dcdcdc;
+        border-radius: 1px;
+        height: 60px;
+        width: 430px;
+        padding-right: 15px;
+        padding-top: 10px;
+        text-align: right;
+        margin-right: 6px;
+        font-size: 2.5rem;
+        overflow-x: auto;
+        transition: all 0.2s ease-in-out;
+      }
+
+      .input:hover {
+        border: 2px solid #006eff;
+        -webkit-box-shadow: inset 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+        box-shadow: inset 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+      }
+
+      .operators input {
+        display: inline-block;
+        border: 1px solid #ffffff;
+        border-radius: 1px;
+        height: 60px;
+        width: 62px;
+        font-size: 25px;
+        text-align: center;
+        padding: 10px;
+        margin: 20px 4px 10px 0;
+        cursor: pointer;
+        background-color: #ffffff;
+        transition: border-color 0.2s ease-in-out, background-color 0.2s,
+          box-shadow 0.2s;
+
+      }
+
+      .operators input:hover {
+        background-color: #ddd;
+        -webkit-box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+        box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+        border-color: #aaa;
+      }
+
+      .operators input:active {
+        font-weight: bold;
+      }
+
+      .leftPanel {
+        display: inline-block;
+      }
+
+      .numbers input {
+        display: inline-block;
+        border: 1px solid #ddd;
+        border-radius: 1px;
+        height: 60px;
+        width: 113px;
+        font-size: 25px;
+        text-align: center;
+        padding: 10px;
+        margin: 10px 4px 10px 0;
+        cursor: pointer;
+        background-color: #eeeeee;
+        transition: border-color 0.2s ease-in-out, background-color 0.2s,
+          box-shadow 0.2s;
+      }
+
+      .numbers input:hover {
+        background-color: #f1f1f1;
+        -webkit-box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+        box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+        border-color: #bbb;
+      }
+
+      .numbers input:active {
+        font-weight: bold;
+      }
+
+      .numbers input.zero {
+        width: 243px !important;
+      }
+
+      input.equal {
+        display: inline-block;
+        border: 1px solid #156dfb;
+        border-radius: 1px;
+        height: 300px;
+        width: 62px;
+        font-size: 25px;
+        text-align: center;
+        padding: 127px 10px;
+        margin: 10px 6px 10px 0;
+        vertical-align: top;
+        cursor: pointer;
+        color: #fff;
+        background-color: #238ffb;
+        transition: all 0.2s ease-in-out;
+      }
+
+      input.equal:hover {
+        background-color: #0062ff;
+        -webkit-box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+        box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+        border-color: #1857bb;
+      }
+
+      input.equal:active {
+        font-weight: bold;
+      }
+
+      .choose {
+        font-size: 23px !important;
+        letter-spacing: 0px;
+      }
+
+      .choose p {
+        font-size: 35px !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="calculator">
+      <div class="choose">
+        <p>Input in :</p>
+        <form>
+          <input
+            class="ip"
+            id="bin"
+            type="radio"
+            name="input"
+            value="bin"
+            onclick="setr();dis();disbutton();"
+          />
+          Binary&nbsp;
+          <input
+            class="ip"
+            id="oct"
+            type="radio"
+            name="input"
+            value="oct"
+            onclick="setr();dis();disbutton();"
+          />
+          Octal&nbsp;
+          <input
+            class="ip"
+            id="dec"
+            type="radio"
+            name="input"
+            value="dec"
+            onclick="setr();dis();disbutton();"
+          />
+          Decimal&nbsp;
+          <input
+            class="ip"
+            id="hex"
+            type="radio"
+            name="input"
+            value="hex"
+            onclick="setr();dis();disbutton();"
+          />
+          Hexa-decimal&nbsp;
+        </form>
+        <p>Output in :</p>
+        <form>
+          <input class="ip" id="opbin" type="radio" name="input" value="bin" />
+          Binary&nbsp;
+          <input class="ip" id="opoct" type="radio" name="input" value="oct" />
+          Octal&nbsp;
+          <input class="ip" id="opdec" type="radio" name="input" value="dec" />
+          Decimal&nbsp;
+          <input class="ip" id="ophex" type="radio" name="input" value="hex" />
+          Hexa-decimal&nbsp;
+        </form>
+      </div>
+      <br />
+
+      <input
+        class="box input"
+        id="box"
+        type="text"
+        placeholder="Enter Here"
+        onclick="setr(); disbutton();"
+        disabled
+      />
+
+      <div class="buttons">
+        <div class="operators">
+          <input type="button" id="ba" value="A" onclick="btna();" />
+          <input type="button" id="bb" value="B" onclick="btnb();" />
+          <input type="button" id="bc" value="C" onclick="btnc();" />
+          <input type="button" id="bd" value="D" onclick="btnd();" />
+          <input type="button" id="be" value="E" onclick="btne();" />
+          <input type="button" id="bf" value="F" onclick="btnf();" />
+        </div>
+
+        <div class="leftPanel">
+          <div class="numbers">
+            <input type="button" id="b7" value="7" onclick="btn7();" />
+            <input type="button" id="b8" value="8" onclick="btn8();" />
+            <input type="button" id="b9" value="9" onclick="btn9();" />
+          </div>
+          <div class="numbers">
+            <input type="button" id="b4" value="4" onclick="btn4();" />
+            <input type="button" id="b5" value="5" onclick="btn5();" />
+            <input type="button" id="b6" value="6" onclick="btn6();" />
+          </div>
+          <div class="numbers">
+            <input type="button" id="b1" value="1" onclick="btn1();" />
+            <input type="button" id="b2" value="2" onclick="btn2();" />
+            <input type="button" id="b3" value="3" onclick="btn3();" />
+          </div>
+          <div class="numbers">
+            <input
+              class="zero"
+              type="button"
+              id="b0"
+              value="0"
+              onclick="btn0();"
+            />
+            <input type="button" class="clear" value="Clear" onclick="clr();" />
+          </div>
+        </div>
+
+        <input
+          class="equal"
+          type="button"
+          class="clear"
+          value="="
+          onclick="setr();process();"
+        />
+      </div>
+    </div>
+
+    <script>
+      var r;
+
+      function disbutton() {
+        if (document.getElementById("bin").checked) {
+          document.getElementById("b1").disabled = false;
+          document.getElementById("b2").disabled = true;
+          document.getElementById("b3").disabled = true;
+          document.getElementById("b4").disabled = true;
+          document.getElementById("b5").disabled = true;
+          document.getElementById("b6").disabled = true;
+          document.getElementById("b7").disabled = true;
+          document.getElementById("b8").disabled = true;
+          document.getElementById("b9").disabled = true;
+          document.getElementById("b0").disabled = false;
+          document.getElementById("ba").disabled = true;
+          document.getElementById("bb").disabled = true;
+          document.getElementById("bc").disabled = true;
+          document.getElementById("bd").disabled = true;
+          document.getElementById("be").disabled = true;
+          document.getElementById("bf").disabled = true;
+        } else if (document.getElementById("dec").checked) {
+          document.getElementById("b1").disabled = false;
+          document.getElementById("b2").disabled = false;
+          document.getElementById("b3").disabled = false;
+          document.getElementById("b4").disabled = false;
+          document.getElementById("b5").disabled = false;
+          document.getElementById("b6").disabled = false;
+          document.getElementById("b7").disabled = false;
+          document.getElementById("b8").disabled = false;
+          document.getElementById("b9").disabled = false;
+          document.getElementById("b0").disabled = false;
+          document.getElementById("ba").disabled = true;
+          document.getElementById("bb").disabled = true;
+          document.getElementById("bc").disabled = true;
+          document.getElementById("bd").disabled = true;
+          document.getElementById("be").disabled = true;
+          document.getElementById("bf").disabled = true;
+        } else if (document.getElementById("hex").checked) {
+          document.getElementById("b1").disabled = false;
+          document.getElementById("b2").disabled = false;
+          document.getElementById("b3").disabled = false;
+          document.getElementById("b4").disabled = false;
+          document.getElementById("b5").disabled = false;
+          document.getElementById("b6").disabled = false;
+          document.getElementById("b7").disabled = false;
+          document.getElementById("b8").disabled = false;
+          document.getElementById("b9").disabled = false;
+          document.getElementById("b0").disabled = false;
+          document.getElementById("ba").disabled = false;
+          document.getElementById("bb").disabled = false;
+          document.getElementById("bc").disabled = false;
+          document.getElementById("bd").disabled = false;
+          document.getElementById("be").disabled = false;
+          document.getElementById("bf").disabled = false;
+        } else if (document.getElementById("oct").checked) {
+          document.getElementById("b1").disabled = false;
+          document.getElementById("b2").disabled = false;
+          document.getElementById("b3").disabled = false;
+          document.getElementById("b4").disabled = false;
+          document.getElementById("b5").disabled = false;
+          document.getElementById("b6").disabled = false;
+          document.getElementById("b7").disabled = false;
+          document.getElementById("b8").disabled = true;
+          document.getElementById("b9").disabled = true;
+          document.getElementById("b0").disabled = false;
+          document.getElementById("ba").disabled = true;
+          document.getElementById("bb").disabled = true;
+          document.getElementById("bc").disabled = true;
+          document.getElementById("bd").disabled = true;
+          document.getElementById("be").disabled = true;
+          document.getElementById("bf").disabled = true;
+        }
+      }
+
+      function dis() {
+        if (document.getElementById("bin").checked) {
+          document.getElementById("opbin").disabled = true;
+          document.getElementById("opdec").disabled = false;
+          document.getElementById("ophex").disabled = false;
+          document.getElementById("opoct").disabled = false;
+        } else if (document.getElementById("dec").checked) {
+          document.getElementById("opbin").disabled = false;
+          document.getElementById("opdec").disabled = true;
+          document.getElementById("ophex").disabled = false;
+          document.getElementById("opoct").disabled = false;
+        } else if (document.getElementById("hex").checked) {
+          document.getElementById("opbin").disabled = false;
+          document.getElementById("opdec").disabled = false;
+          document.getElementById("ophex").disabled = true;
+          document.getElementById("opoct").disabled = false;
+        } else if (document.getElementById("oct").checked) {
+          document.getElementById("opbin").disabled = false;
+          document.getElementById("opdec").disabled = false;
+          document.getElementById("ophex").disabled = false;
+          document.getElementById("opoct").disabled = true;
+        }
+      }
+
+      function setr() {
+        document.getElementById("box").disabled = true;
+        if (document.getElementById("bin").checked) r = 2;
+        else if (document.getElementById("dec").checked) r = 10;
+        else if (document.getElementById("hex").checked) r = 16;
+        else if (document.getElementById("oct").checked) r = 8;
+      }
+
+      function btn1() {
+        var x = document.getElementById("box");
+        x.value = x.value + "1";
+      }
+
+      function btn2() {
+        var x = document.getElementById("box");
+        x.value = x.value + "2";
+      }
+
+      function btn3() {
+        var x = document.getElementById("box");
+        x.value = x.value + "3";
+      }
+
+      function btn4() {
+        var x = document.getElementById("box");
+        x.value = x.value + "4";
+      }
+
+      function btn5() {
+        var x = document.getElementById("box");
+        x.value = x.value + "5";
+      }
+
+      function btn6() {
+        var x = document.getElementById("box");
+        x.value = x.value + "6";
+      }
+
+      function btn7() {
+        var x = document.getElementById("box");
+        x.value = x.value + "7";
+      }
+
+      function btn8() {
+        var x = document.getElementById("box");
+        x.value = x.value + "8";
+      }
+
+      function btn9() {
+        var x = document.getElementById("box");
+        x.value = x.value + "9";
+      }
+
+      function btn0() {
+        var x = document.getElementById("box");
+        x.value = x.value + "0";
+      }
+
+      function btna() {
+        var x = document.getElementById("box");
+        x.value = x.value + "A";
+      }
+
+      function btnb() {
+        var x = document.getElementById("box");
+        x.value = x.value + "B";
+      }
+
+      function btnc() {
+        var x = document.getElementById("box");
+        x.value = x.value + "C";
+      }
+
+      function btnd() {
+        var x = document.getElementById("box");
+        x.value = x.value + "D";
+      }
+
+      function btne() {
+        var x = document.getElementById("box");
+        x.value = x.value + "E";
+      }
+
+      function btnf() {
+        var x = document.getElementById("box");
+        x.value = x.value + "F";
+      }
+
+      function clr() {
+        var x = document.getElementById("box");
+        x.value = "";
+      }
+
+      function process() {
+        if (document.getElementById("bin").checked) {
+          handle_bin();
+        } else if (document.getElementById("dec").checked) {
+          handle_dec();
+        } else if (document.getElementById("hex").checked) {
+          handle_hex();
+        } else if (document.getElementById("oct").checked) {
+          handle_oct();
+        }
+      }
+
+      function handle_bin() {
+        if (document.getElementById("opdec").checked) {
+          converttodec();
+        } else if (document.getElementById("ophex").checked) {
+          converttohex();
+        } else if (document.getElementById("opoct").checked) {
+          converttooct();
+        }
+      }
+
+      function handle_dec() {
+        if (document.getElementById("opbin").checked) {
+          converttobin();
+        } else if (document.getElementById("ophex").checked) {
+          converttohex();
+        } else if (document.getElementById("opoct").checked) {
+          converttooct();
+        }
+      }
+
+      function handle_hex() {
+        if (document.getElementById("opdec").checked) {
+          converttodec();
+        } else if (document.getElementById("opoct").checked) {
+          converttooct();
+        } else if (document.getElementById("opbin").checked) {
+          converttobin();
+        }
+      }
+
+      function handle_oct() {
+        if (document.getElementById("opdec").checked) {
+          converttodec();
+        } else if (document.getElementById("ophex").checked) {
+          converttohex();
+        } else if (document.getElementById("opbin").checked) {
+          converttobin();
+        }
+      }
+
+      function converttobin() {
+        var no = document.getElementById("box");
+        var y = parseInt(no.value, r);
+        var z = y.toString(2);
+        no.value = z;
+      }
+
+      function converttodec() {
+        var no = document.getElementById("box");
+        var y = parseInt(no.value, r);
+        no.value = y;
+      }
+
+      function converttohex() {
+        var no = document.getElementById("box");
+        var y = parseInt(no.value, r);
+        var z = y.toString(16);
+        no.value = z;
+      }
+
+      function converttooct() {
+        var no = document.getElementById("box");
+        var y = parseInt(no.value, r);
+        var z = y.toString(8);
+        no.value = z;
+      }
+    </script>
+  </body>
+</html>

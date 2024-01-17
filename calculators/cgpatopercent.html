@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CGPA to Percentage Converter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        font-family: Arial;
+        background-color: #000000;
+        margin: 0;
+        padding: 20px;
+      }
+
+      h1 {
+        text-align: center;
+        margin-top: 0;
+      }
+
+      form {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 3px 3px 10px #0066ff;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 10px;
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      input[type="number"] {
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #000000;
+        width: 100%;
+        box-sizing: border-box;
+        font-size: 16px;
+        margin-bottom: 20px;
+      }
+
+      button {
+        padding: 10px 20px;
+        background-color: #0026ff;
+        color: #fff;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+        width: 100%;
+      }
+
+      button:hover {
+        background-color: #00ccff;
+        color: #000000;
+        box-shadow: 3px 3px 10px #000000;
+      }
+
+      .result {
+        margin-top: 20px;
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>CGPA to Percentage Converter</h1>
+    <form>
+      <label for="cgpa">Enter your CGPA:</label>
+      <input
+        type="number"
+        id="cgpa"
+        placeholder="e.g. 8.5"
+        step="0.01"
+        min="0"
+        max="10"
+      />
+      <button onclick="convert(event)">Convert</button>
+      <div class="result" id="result"></div>
+    </form>
+
+    <script>
+      function convert(event) {
+        event.preventDefault();
+        let cgpa = document.getElementById("cgpa").value;
+        let percentage = cgpa * 9.5;
+
+        document.getElementById(
+          "result"
+        ).innerHTML = `Your percentage is: ${percentage.toFixed(2)}%`;
+      }
+    </script>
+  </body>
+</html>

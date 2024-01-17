@@ -1,0 +1,174 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>comapund</title>
+    <style>
+      * {
+        background-color: #000000;
+        border-radius: 6px;
+        font-size: 100%;
+        padding: 10px;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+      }
+      #outer {
+        color: #70b9e9;
+        width: 90%;
+        max-width: 600px;
+        background: #fff;
+        margin: 0 auto;
+      }
+      #cover {
+        border: 2px solid #ffffff;
+        padding: 15px 0;
+      }
+      .main {
+        table-layout: fixed;
+        width: 94%;
+        border: 0;
+        border-collapse: collapse;
+        margin: 0 auto;
+      }
+      .main td {
+        color: #fefdfd;
+        padding: 0 8px;
+        vertical-align: middle;
+        border: 0;
+      }
+      .main input {
+        color: #000000;
+        background: #7fb5e4;
+        width: 100%;
+        border: 1px solid #738ec9;
+        margin: 2px 0;
+        padding: 0 2%;
+        height: 22px;
+        text-align: right;
+      }
+      .ac {
+        text-align: center;
+      }
+      .b {
+        font-weight: bold;
+      }
+      .main select {
+        color: #ffffff;
+        width: 100%;
+        border: 1px solid #e3e5b9;
+        margin: 2px 0;
+        background: #43dad3;
+        height: 22px;
+      }
+
+      .w50 {
+        width: 50%;
+      }
+
+      .main button {
+        color: #000000;
+        font-size: medium;
+        border: 1px solid #f3e2e2;
+        background: #4fa1ff;
+        width: 100%;
+        font-weight: bold;
+        margin: 3px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="outer">
+      <div class="ac b">Interest Calculator</div>
+      <div id="cover">
+        <form name="intt">
+          <table class="main">
+            <col class="w50" />
+            <col class="w40" />
+            <tr>
+              <td>Principal Amount</td>
+              <td>
+                <input id="principal" />
+                <tr>
+                  <td>Interest Rate</td>
+                  <td>
+                    <input id="rate" />
+                    <tr>
+                      <td>Interest Type</td>
+                      <td>
+                        <select id="itype">
+                          <option value="s">Simple</option>
+                          <option value="c" selected>Compound</option>
+                        </select>
+                        <tr>
+                          <td>Compounding Frequency</td>
+                          <td>
+                            <select id="crate">
+                              <option value="12">Monthly</option>
+                              <option value="4" selected>Quarterly</option>
+                              <option value="2">Half-yearly</option>
+                              <option value="1">Yearly</option>
+                            </select>
+                            <tr>
+                              <td>Period (months)</td>
+                              <td>
+                                <input id="time" />
+                                <tr>
+                                  <td><button type="reset">Reset</button></td>
+                                  <td>
+                                    <button type="button" onclick="interest()">
+                                      Submit
+                                    </button>
+                                    <tr>
+                                      <td>Interest Amount</td>
+                                      <td><input id="inttamt" /></td>
+                                    </tr>
+                                  </td>
+                                </tr>
+                              </td>
+                            </tr>
+                          </td>
+                        </tr>
+                      </td>
+                    </tr>
+                  </td>
+                </tr>
+              </td>
+            </tr>
+          </table>
+        </form>
+      </div>
+    </div>
+    <script>
+      function interest() {
+        var principal = document.getElementById("principal").value;
+        var rate = document.getElementById("rate").value;
+        var time = document.getElementById("time").value;
+        var itype = document.getElementById("itype").value;
+        var crate = document.getElementById("crate").value;
+        var time = document.getElementById("time").value;
+        var irate = rate / crate;
+        var inttamt = document.getElementById("inttamt").value;
+        var decimal = 2;
+        if (itype == "c") {
+          document.getElementById("inttamt").value =
+            Math.round(
+              (document.getElementById("principal").value *
+                Math.pow(1 + irate / 100, (time / 12) * crate) *
+                1 -
+                principal * 1) *
+                100
+            ) / 100;
+        }
+        if (itype == "s") {
+          document.getElementById("inttamt").value =
+            Math.round(
+              ((document.getElementById("principal").value * rate * time) /
+                12 /
+                100) *
+                100
+            ) / 100;
+        }
+      }
+    </script>
+  </body>
+</html>

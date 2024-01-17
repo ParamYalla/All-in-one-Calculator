@@ -1,0 +1,284 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SURFACE AREA AND VOLUME CALCULATOR</title>
+
+    <style>
+        body{
+  margin:0;
+  background-color:#000000;
+  color:rgb(255, 255, 255);
+}
+h1{
+  text-align:center;
+  text-shadow:1pt 1pt #0062ff;
+}
+#content{
+  width:90%;
+  margin:auto;
+  margin-bottom:10pt;
+  height:150pt;
+  background-color:#0e2effe4;
+  border-radius:20pt;
+  color:black;
+  padding:10pt;
+  display:flex;
+  border:2pt solid black;
+}
+
+#content>div{
+  width:33%;
+  text-align:center;
+}
+#area{
+  background-color:#bad4ff;
+  border-top-left-radius:20pt;
+  border-bottom-left-radius:20pt;
+}
+#volume{
+  background-color:#baffc8;
+  border-left:1px solid black;
+  border-right:1pt solid black;
+}
+#inputarea{
+  background-color:#ffbaba;
+  border-top-right-radius:20pt;
+  border-bottom-right-radius:20pt;
+}
+
+h2{
+  margin:0;
+  padding-bottom:25pt;
+  text-align:center;
+}
+#inputarea{
+  text-align:center;
+}
+input{
+  text-align:center;
+  margin:3pt;
+  width:40%;
+}
+button{
+        background-color: #0026ff;
+        color: #fff;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 13px;
+        transition: background-color 0.3s ease;
+}
+
+select{
+  width:40%;
+}
+
+p{
+  display:inline;
+}
+
+#powoutv,#powouta{
+  vertical-align:top;
+  font-size:.7em;
+}
+
+    </style>
+
+</head>
+<body>
+
+
+
+<h1>
+  Area/Volume Calculator
+</h1>
+<div id="content">
+  <div id="area">
+    <h2>
+      Surface Area
+    </h2>
+    <p id="areaout">
+    </p>
+    <p id="unitouta">
+    </p>
+    <p id="powouta"></p>
+  </div>
+  <div id="volume">
+    <h2>
+      Volume
+    </h2>
+    <p id="volumeout">
+    </p>
+    <p id="unitoutv"></p>
+    <p id="powoutv"</p>
+  </div>
+  <div id="inputarea">
+    <h2>
+      Input area
+    </h2>
+    <input type="number" id="length" placeholder="Length">
+    </input>
+    <input type="number" id="height" placeholder="Height">
+    <input  type="number"id="width" placeholder="Width"><br>
+    <button id="calcarea">Calculate Area</button>
+    <button id="calcvolume">Calculate Volume</button><br>
+    <select id="shape">
+      <option value="rectangular prism">Rectangular prism</option>
+      <option value="sphere">Sphere</option>
+      <option value="cylinder">Cylinder</option>
+    </select>
+    <select id="unit">
+      <option value="centimeters">Centimeters</option>
+      <option value="meters">Meters</option>
+      <option value="kilometers">Kilometers</option>
+      <option value="inches">Inches</option>
+      <option value="feet">Feet</option>
+      <option value="yards">Yards</option>
+      <option value="miles">Miles</option>
+    </select>
+  </div>
+</div>
+<script>
+// Gets the inputs for the parameters
+const lengthIn = $("input#length");
+const heightIn = $("input#height");
+const widthIn = $("input#width");
+
+// Gets the buttons/selects to check for clicks/changes
+const areaBtn = $("button#calcarea");
+const volumeBtn = $("button#calcvolume");
+const shapeType = $("select#shape");
+const unitType = $("select#unit");
+
+// Gets the output area for the code
+const areaOut = $("#areaout");
+const volumeOut = $("#volumeout");
+const unitOutA = $("#unitouta");//  Unit type for area
+const unitOutV = $("#unitoutv");// Unit type for area
+const powA = $("#powouta")// Power output for area
+const powV = $("#powoutv")// Power output for volume
+let unit = "centimeters";
+let shape = "rectangular prism";
+let area = 0;
+let volume = 0;
+
+// When the buttons are clicked
+$("#calcarea").on("click",calculateArea);
+volumeBtn.click(calculateVolume);
+
+// When the selects are changed
+shapeType.on("change",changeShape);
+unitType.on("change",changeUnit);
+
+// Calculates the area dependant on the shape
+function calculateArea(){
+  if(shape == "rectangular prism"){
+    let l = lengthIn.val();// Length
+    let h = heightIn.val();// Height
+    let w = widthIn.val();// Width
+    area = 2*((w*l)+(h*l)+(h*w));
+    }
+  else if(shape == "sphere"){
+    let r = widthIn.val();// Radius
+    area = 4*3.14159*(Math.pow(r,2));
+    }
+  else if(shape == "cylinder"){
+    let r = widthIn.val();// Radius
+    let h = heightIn.val();// Height
+    area = (2*(3.1415*r*h))+(2*(3.1415*(Math.pow(r,2))));
+    }
+  else{
+      console.log("Could not find a shape");
+  }
+  displayArea();
+}
+
+// Calculates the volume dependant on the shape
+function calculateVolume(){
+  if(shape == "rectangular prism"){
+    w = widthIn.val();
+    h = heightIn.val();
+    l = lengthIn.val();
+    volume = w*h*l;
+  }
+  else if(shape == "sphere"){
+    r = widthIn.val();
+    volume = ((4/3)*3.1415)*Math.pow(r,3);
+  }
+  else if(shape == "cylinder"){
+    r = widthIn.val();
+    h = heightIn.val();
+    volume = (3.1415*Math.pow(r,2));
+  }
+  displayVolume();
+}
+
+// Changes the shape, which will affect calculations
+function changeShape(){
+  shape = shapeType.val();
+  switch(shape){
+    case "rectangular prism":
+      lengthIn.slideDown();
+      heightIn.slideDown();
+      widthIn.slideDown();
+      lengthIn.attr("placeholder","Length");
+      heightIn.attr("placeholder","Height");
+      widthIn.attr("placeholder","Width");
+      break;
+
+    case "sphere":
+      lengthIn.slideUp();
+      heightIn.slideUp();
+      widthIn.slideDown();
+      widthIn.attr("placeholder","Radius");
+      break;
+
+    case "cylinder":
+      lengthIn.slideUp();
+      heightIn.slideDown();
+      widthIn.slideDown();
+      heightIn.attr("placeholder","Height");
+      widthIn.attr("placeholder","Radius");
+      break;
+
+    default:
+      console.log("Could not find Select option for '"+shape+"'.");
+      break;
+  }
+}
+
+// Changes the unit type depending on what the user selects
+function changeUnit(){
+  unit = unitType.val();
+}
+
+function displayArea(){
+  area = area.toFixed(2);
+  areaOut.text("Area: "+area);
+  if(unit == "centimeters")unitOutA.text("cm");
+  else if(unit == "meters")unitOutA.text("m");
+  else if(unit == "kilometers")unitOutA.text("km");
+  else if(unit == "inches")unitOutA.text('"');
+  else if(unit == "feet")unitOutA.text("'");
+  else if(unit == "yards")unitOutA.text("yd");
+  else if(unit == "miles")unitOutA.text("mi");
+  else console.log("Could not find Unit");
+  powA.text("2");
+}
+
+function displayVolume(){
+  volume = volume.toFixed(2);
+  volumeOut.text("Volume: "+volume);
+  if(unit == "centimeters")unitOutV.text("cm");
+  else if(unit == "meters")unitOutV.text("m");
+  else if(unit == "kilometers")unitOutV.text("km");
+  else if(unit == "inches")unitOutV.text('"');
+  else if(unit == "feet")unitOutV.text("'");
+  else if(unit == "yards")unitOutV.text("yd");
+  else if(unit == "miles")unitOutV.text("mi");
+  else console.log("Could not find Unit");
+  powV.text("3");
+}
+</script>
+</body>
+</html>

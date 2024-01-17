@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>All in one Calculator</title>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.6.4/math.js"
+      integrity="sha512-BbVEDjbqdN3Eow8+empLMrJlxXRj5nEitiCAK5A1pUr66+jLVejo3PmjIaucRnjlB0P9R3rBUs3g5jXc8ti+fQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.6.4/math.min.js"
+      integrity="sha512-iphNRh6dPbeuPGIrQbCdbBF/qcqadKWLa35YPVfMZMHBSI6PLJh1om2xCTWhpVpmUyb4IvVS9iYnnYMkleVXLA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- navbar  -->
+    <div class="topnav" id="myTopnav">
+      <a href="index.html" class="active">Home</a>
+      <a href="contact.html">Contact</a>
+      <a href="about.html">About</a>
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+
+    <br />
+    <!-- navbar -->
+
+    <table id="calcu">
+      <tr>
+        <td colspan="3"><input type="text" id="result" /></td>
+        <td><input type="button" value="c" onclick="clr()" /></td>
+      </tr>
+      <tr>
+        <td>
+          <input
+            type="button"
+            value="1"
+            onclick="dis('1')"
+            onkeydown="myFunction(event)"
+          />
+        </td>
+        <td>
+          <input
+            type="button"
+            value="2"
+            onclick="dis('2')"
+            onkeydown="myFunction(event)"
+          />
+        </td>
+        <td>
+          <input
+            type="button"
+            value="3"
+            onclick="dis('3')"
+            onkeydown="myFunction(event)"
+          />
+        </td>
+        <td>
+          <input
+            type="button"
+            value="/"
+            onclick="dis('/')"
+            onkeydown="myFunction(event)"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input
+            type="button"
+            value="4"
+            onclick="dis('4')"
+            onkeydown="myFunction(event)"
+          />
+        </td>
+        <td>
+          <input
+            type="button"
+            value="5"
+            onclick="dis('5')"
+            onkeydown="myFunction(event)"
+          />
+        </td>
+        <td>
+          <input
+            type="button"
+            value="6"
+            onclick="dis('6')"
+            onkeydown="myFunction(event)"
+          />
+        </td>
+        <td>
+          <input
+            type="button"
+            value="*"
+            onclick="dis('*')"
+            onkeydown="myFunction(event)"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input
+            type="button"
+            value="7"
+            onclick="dis('7')"
+            onkeydown="myFunction(event)"
+          />
+        </td>
+        <td>
+          <input
+            type="button"
+            value="8"
+            onclick="dis('8')"
+            onkeydown="myFunction(event)"
+          />
+        </td>
+        <td>
+          <input
+            type="button"
+            value="9"
+            onclick="dis('9')"
+            onkeydown="myFunction(event)"
+          />
+        </td>
+        <td>
+          <input
+            type="button"
+            value="-"
+            onclick="dis('-')"
+            onkeydown="myFunction(event)"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input
+            type="button"
+            value="0"
+            onclick="dis('0')"
+            onkeydown="myFunction(event)"
+          />
+        </td>
+        <td>
+          <input
+            type="button"
+            value="."
+            onclick="dis('.')"
+            onkeydown="myFunction(event)"
+          />
+        </td>
+
+        <!-- solve function call function solve to evaluate value -->
+        <td><input type="button" value="=" onclick="solve()" /></td>
+
+        <td>
+          <input
+            type="button"
+            value="+"
+            onclick="dis('+')"
+            onkeydown="myFunction(event)"
+          />
+        </td>
+      </tr>
+    </table>
+    <!-- simple CALCULATOR end -->
+
+    <br />
+    <br />
+    <br />
+
+    <!-- buttons  -->
+
+    <div class="center">
+      <a href="calculators/scientific.html">
+        <button class="homebuttons">SCIENTIFI. CALCU..</button>
+      </a>
+    </div>
+
+    <div class="center">
+      <a href="calculators/cgpatopercent.html">
+        <button class="homebuttons">CGPA TO PERCENT</button>
+      </a>
+    </div>
+
+    <div class="center">
+      <a href="calculators/currency.html">
+        <button class="homebuttons">CURRENCY CONV.</button>
+      </a>
+    </div>
+
+    <div class="center">
+      <a href="calculators/simpleint.html">
+        <button class="homebuttons">SIMPLE INTEREST..</button>
+      </a>
+    </div>
+
+    <div class="center">
+      <a href="calculators/geometrycal.html">
+        <button class="homebuttons">GEOMETRY CALC..</button>
+      </a>
+    </div>
+
+    <div class="center">
+      <a href="calculators/surfarea.html">
+        <button class="homebuttons">SURFACE AR./VOL.</button>
+      </a>
+    </div>
+
+    <div class="center">
+      <a href="calculators/data.html">
+        <button class="homebuttons">DATA CONVERTER..</button>
+      </a>
+    </div>
+
+    <div class="center">
+      <a href="calculators/binaryheax.html">
+        <button class="homebuttons">BINARY CONVERT..</button>
+      </a>
+    </div>
+
+    <div class="center">
+      <a href="calculators/days.html">
+        <button class="homebuttons">DAY's CONVERTER.</button>
+      </a>
+    </div>
+
+    <div class="center">
+      <a href="calculators/timzone.html">
+        <button class="homebuttons">TIME ZONE CONV.</button>
+      </a>
+    </div>
+
+    <div class="center">
+      <a href="calculators/energy.html">
+        <button class="homebuttons">ENERGY CONVER..</button>
+      </a>
+    </div>
+
+    <div class="center">
+      <a href="calculators/temperature.html">
+        <button class="homebuttons">TEMPERAT. CONV.</button>
+      </a>
+    </div>
+
+    <div class="center">
+      <a href="calculators/lengthcal.html">
+        <button class="homebuttons">LENGHT CONVER..</button>
+      </a>
+    </div>
+
+    <div class="center">
+      <a href="calculators/powweigth.html">
+        <button class="homebuttons">POWER CONVERT.</button>
+      </a>
+    </div>
+
+    <div class="center">
+      <a href="calculators/powweigth.html">
+        <button class="homebuttons">PRESSURE CONVE.</button>
+      </a>
+    </div>
+
+    <div class="center">
+      <a href="calculators/powweigth.html">
+        <button class="homebuttons">SPEED CONVERTE.</button>
+      </a>
+    </div>
+
+    <div class="center">
+      <a href="calculators/bmical.html">
+        <button class="homebuttons">BMI CALCULATOR.</button>
+      </a>
+    </div>
+
+    <div class="center">
+      <a href="calculators/compoundin.html">
+        <button class="homebuttons">COMP. INT. CALC..</button>
+      </a>
+    </div>
+
+    <div class="center">
+      <a href="calculators/gst.html">
+        <button class="homebuttons">GST CALCULATOR.</button>
+      </a>
+    </div>
+
+    <div class="center">
+      <a href="calculators/tipcal.html">
+        <button class="homebuttons">TIP CALCULATOR...</button>
+      </a>
+    </div>
+
+    <div class="center">
+      <a href="calculators/discount.html">
+        <button class="homebuttons">DISCOUNT CALC...</button>
+      </a>
+    </div>
+
+    <!-- button end -->
+
+    <br /><br />
+    <br />
+    <!-- footer strt  -->
+    <link
+      href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+      rel="stylesheet"
+      id="bootstrap-css"
+    />
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+    />
+    <footer id="dk-footer" class="dk-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 col-lg-4">
+            <div class="dk-footer-box-info">
+              <div class="footer-social-link">
+                <h3>Follow us</h3>
+                <ul>
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-facebook"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-twitter"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-google-plus"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-linkedin"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-instagram"></i>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <!-- End Social link -->
+            </div>
+            <!-- End Footer info -->
+            <div class="footer-awarad">
+              <img src="images/icon/best.png" alt="" />
+              <p>Best Design Company 2024</p>
+            </div>
+          </div>
+          <!-- End Col -->
+          <div class="col-md-12 col-lg-8">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="contact-us">
+                  <div class="contact-icon">
+                    <i class="fa fa-map-o" aria-hidden="true"></i>
+                  </div>
+                  <!-- End contact Icon -->
+                  <div class="contact-info">
+                    <h3>Maharashtra India</h3>
+                    <p>5353 Road Avenue</p>
+                  </div>
+                  <!-- End Contact Info -->
+                </div>
+                <!-- End Contact Us -->
+              </div>
+              <!-- End Col -->
+              <div class="col-md-6">
+                <div class="contact-us contact-us-last">
+                  <div class="contact-icon">
+                    <i
+                      class="fa fa-volume-control-phone"
+                      aria-hidden="true"
+                    ></i>
+                  </div>
+                  <!-- End contact Icon -->
+                  <div class="contact-info">
+                    <h3>95 711 9 5353</h3>
+                    <p>Give us a call</p>
+                  </div>
+                  <!-- End Contact Info -->
+                </div>
+                <!-- End Contact Us -->
+              </div>
+              <!-- End Col -->
+            </div>
+            <!-- End Contact Row -->
+            <div class="row">
+              <div class="col-md-12 col-lg-6">
+                <div class="footer-widget footer-left-widget">
+                  <div class="section-heading">
+                    <h3>Useful Links</h3>
+                    <span class="animate-border border-black"></span>
+                  </div>
+                  <ul>
+                    <li>
+                      <a href="#">About us</a>
+                    </li>
+                    <li>
+                      <a href="#">Services</a>
+                    </li>
+                    <li>
+                      <a href="#">Projects</a>
+                    </li>
+                    <li>
+                      <a href="#">Our Team</a>
+                    </li>
+                  </ul>
+                  <ul>
+                    <li>
+                      <a href="#">Contact us</a>
+                    </li>
+                    <li>
+                      <a href="#">Blog</a>
+                    </li>
+                    <li>
+                      <a href="#">Testimonials</a>
+                    </li>
+                    <li>
+                      <a href="#">Faq</a>
+                    </li>
+                  </ul>
+                </div>
+                <!-- End Footer Widget -->
+              </div>
+              <!-- End col -->
+              <div class="col-md-12 col-lg-6">
+                <div class="footer-widget">
+                  <div class="section-heading">
+                    <h3>Subscribe</h3>
+                    <span class="animate-border border-black"></span>
+                  </div>
+                  <p>
+                    <!-- Don’t miss to subscribe to our new feeds, kindly fill the form below. -->
+                    Reference site about Lorem Ipsum, giving information on its
+                    origins, as well.
+                  </p>
+                  <form action="#">
+                    <div class="form-row">
+                      <div class="col dk-footer-form">
+                        <input
+                          type="email"
+                          class="form-control"
+                          placeholder="Email Address"
+                        />
+                        <button type="submit">
+                          <i class="fa fa-send"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                  <!-- End form -->
+                </div>
+                <!-- End footer widget -->
+              </div>
+              <!-- End Col -->
+            </div>
+            <!-- End Row -->
+          </div>
+          <!-- End Col -->
+        </div>
+        <!-- End Widget Row -->
+      </div>
+      <!-- End Contact Container -->
+
+      <div class="copyright">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <span>Copyright © 2024, All Right Reserved</span>
+            </div>
+            <!-- End Col -->
+            <div class="col-md-6">
+              <div class="copyright-menu">
+                <ul>
+                  <li>
+                    <a href="#">Home</a>
+                  </li>
+                  <li>
+                    <a href="#">Terms</a>
+                  </li>
+                  <li>
+                    <a href="#">Privacy Policy</a>
+                  </li>
+                  <li>
+                    <a href="#">Contact</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- End col -->
+          </div>
+          <!-- End Row -->
+        </div>
+        <!-- End Copyright Container -->
+      </div>
+      <!-- End Copyright -->
+      <!-- Back to top -->
+      <div id="back-to-top" class="back-to-top">
+        <button class="btn btn-dark" title="Back to Top" style="display: block">
+          <i class="fa fa-angle-up"></i>
+        </button>
+      </div>
+      <!-- End Back to top -->
+    </footer>
+
+    <!-- footer end -->
+    <script src="script.js"></script>
+  </body>
+</html>

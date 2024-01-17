@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Energy Conversion</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+      charset="UTF-8"
+    />
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css" />
+
+    <style>
+      input {
+        width: 100%;
+        outline: none;
+      }
+      input[type="number"]::-webkit-inner-spin-button,
+      input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+      body {
+        background-color: #000000;
+      }
+
+      header{
+        color: #dfdfdf;
+        background-color: rgb(0, 0, 255);
+      }
+
+      .bgc{
+        background-color: #093eff;
+      }
+
+      .clearbtn{
+        margin-bottom: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="main">
+      <header>
+
+          <h1 class="w3-jumbo w3-center w3-padding-24">
+            <b>Energy Conversion</b>
+          </h1>
+      </header>
+      <div class="container w3-margin-top ">
+        <div class="w3-container clearbtn">
+          <button
+            class="w3-btn w3-right w3-blue w3-ripple"
+            onclick="clear_all_values()"
+          >
+            <b>Clear</b>
+          </button>
+        </div>
+
+        <div class="w3-row-padding bgc">
+          <div class="w3-panel w3-col m6 l6">
+            <div class="w3-card-2 w3-padding w3-margin-bottom w3-animate-left">
+              <label
+                ><b>Megajoule : </b
+                ><input
+                  type="number"
+                  class="w3-border-0 w3-border-bottom"
+                  id="megajoule"
+                  onfocus="increasecardsize(this.parentElement)"
+                  onblur="deccardsize(this.parentElement)"
+                  oninput="mj_to_others(this.value)"
+                  placeholder="megajoule (MJ)"
+                  min="0"
+                />
+              </label>
+            </div>
+          </div>
+
+          <div class="w3-panel w3-col m6 l6">
+            <div class="w3-card-2 w3-padding w3-margin-bottom w3-animate-right">
+              <label
+                ><b>Kilojoule : </b
+                ><input
+                  type="number"
+                  class="w3-border-0 w3-border-bottom"
+                  id="kilojoule"
+                  onfocus="increasecardsize(this.parentElement)"
+                  onblur="deccardsize(this.parentElement)"
+                  oninput="kj_to_others(this.value)"
+                  placeholder="kilojoule (kJ)"
+                  min="0"
+                />
+              </label>
+            </div>
+          </div>
+
+          <div class="w3-panel w3-col m6 l6">
+            <div class="w3-card-2 w3-padding w3-margin-bottom w3-animate-left">
+              <label
+                ><b>Joule : </b
+                ><input
+                  type="number"
+                  class="w3-border-0 w3-border-bottom"
+                  id="joule"
+                  onfocus="increasecardsize(this.parentElement)"
+                  onblur="deccardsize(this.parentElement)"
+                  oninput="joule_to_others(this.value)"
+                  placeholder="joule (J)"
+                  min="0"
+                />
+              </label>
+            </div>
+          </div>
+
+          <div class="w3-panel w3-col m6 l6">
+            <div class="w3-card-2 w3-padding w3-margin-bottom w3-animate-right">
+              <label
+                ><b>Ergs : </b
+                ><input
+                  type="number"
+                  class="w3-border-0 w3-border-bottom"
+                  id="ergs"
+                  onfocus="increasecardsize(this.parentElement)"
+                  onblur="deccardsize(this.parentElement)"
+                  oninput="ergs_to_others(this.value)"
+                  placeholder="ergs"
+                  min="0"
+                />
+              </label>
+            </div>
+          </div>
+
+          <div class="w3-panel w3-col m6 l6">
+            <div class="w3-card-2 w3-padding w3-margin-bottom w3-animate-left">
+              <label
+                ><b> Electronvolt : </b
+                ><input
+                  type="number"
+                  class="w3-border-0 w3-border-bottom w3-animate-left"
+                  id="electronvolt"
+                  onfocus="increasecardsize(this.parentElement)"
+                  onblur="deccardsize(this.parentElement)"
+                  oninput="ev_to_others(this.value)"
+                  placeholder="electronvolt (eV)"
+                  min="0"
+                />
+              </label>
+            </div>
+          </div>
+
+          <div class="w3-panel w3-col m6 l6">
+            <div class="w3-card-2 w3-padding w3-margin-bottom w3-animate-right">
+              <label
+                ><b>Kilocalorie : </b
+                ><input
+                  type="number"
+                  class="w3-border-0 w3-border-bottom"
+                  id="kilocalorie"
+                  onfocus="increasecardsize(this.parentElement)"
+                  onblur="deccardsize(this.parentElement)"
+                  oninput="kcal_to_others(this.value)"
+                  placeholder="kcal"
+                  min="0"
+                />
+              </label>
+            </div>
+          </div>
+
+          <div class="w3-panel w3-col m6 l6">
+            <div class="w3-card-2 w3-padding w3-margin-bottom w3-animate-left">
+              <label
+                ><b>Calorie : </b
+                ><input
+                  type="number"
+                  class="w3-border-0 w3-border-bottom"
+                  id="calorie"
+                  onfocus="increasecardsize(this.parentElement)"
+                  onblur="deccardsize(this.parentElement)"
+                  oninput="calorie_to_others(this.value)"
+                  placeholder="cal"
+                  min="0"
+                />
+              </label>
+            </div>
+          </div>
+
+          <div class="w3-panel w3-col m6 l6">
+            <div class="w3-card-2 w3-padding w3-margin-bottom w3-animate-right">
+              <label
+                ><b>Foot-Pound : </b
+                ><input
+                  type="number"
+                  class="w3-border-0 w3-border-bottom"
+                  id="footpound"
+                  onfocus="increasecardsize(this.parentElement)"
+                  onblur="deccardsize(this.parentElement)"
+                  oninput="ftlb_to_others(this.value)"
+                  placeholder="ft-lb"
+                  min="0"
+                />
+              </label>
+            </div>
+          </div>
+
+          <div class="w3-panel w3-col m6 l6">
+            <div class="w3-card-2 w3-padding w3-margin-bottom w3-animate-left">
+              <label
+                ><b>Inch-Pound : </b
+                ><input
+                  type="number"
+                  class="w3-border-0 w3-border-bottom"
+                  id="inchpound"
+                  onfocus="increasecardsize(this.parentElement)"
+                  onblur="deccardsize(this.parentElement)"
+                  oninput="inlb_to_others(this.value)"
+                  placeholder="in-lb"
+                  min="0"
+                />
+              </label>
+            </div>
+          </div>
+
+          <div class="w3-panel w3-col m6 l6">
+            <div class="w3-card-2 w3-padding w3-margin-bottom w3-animate-right">
+              <label
+                ><b>Kilowatt-Hour : </b
+                ><input
+                  type="number"
+                  class="w3-border-0 w3-border-bottom"
+                  id="kilowatthour"
+                  onfocus="increasecardsize(this.parentElement)"
+                  onblur="deccardsize(this.parentElement)"
+                  oninput="kwh_to_others(this.value)"
+                  placeholder="kilowatt-hour (kWh)"
+                  min="0"
+                />
+              </label>
+            </div>
+          </div>
+
+          <div class="w3-panel w3-col m6 l6">
+            <div class="w3-card-2 w3-padding w3-margin-bottom w3-animate-left">
+              <label
+                ><b>Watt-Hour : </b
+                ><input
+                  type="number"
+                  class="w3-border-0 w3-border-bottom"
+                  id="watthour"
+                  onfocus="increasecardsize(this.parentElement)"
+                  onblur="deccardsize(this.parentElement)"
+                  oninput="wh_to_others(this.value)"
+                  placeholder="watt-hour (Wh)"
+                  min="0"
+                />
+              </label>
+            </div>
+          </div>
+
+          <div class="w3-panel w3-col m6 l6">
+            <div class="w3-card-2 w3-padding w3-margin-bottom w3-animate-right">
+              <label
+                ><b>British Thermal Unit : </b
+                ><input
+                  type="number"
+                  class="w3-border-0 w3-border-bottom"
+                  id="btu"
+                  onfocus="increasecardsize(this.parentElement)"
+                  onblur="deccardsize(this.parentElement)"
+                  oninput="btu_to_others(this.value)"
+                  placeholder="btu"
+                  min="0"
+                />
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+
+
+
+
+
+      function clear_all_values() {
+        var x = document.getElementsByTagName("input");
+        var i;
+        for (i = 0; i < x.length; i++) {
+          x[i].value = "";
+        }
+      }
+
+      /* Functions for energy conversion*/
+      /* mega joule to others */
+      function mj_to_others(x) {
+        document.getElementById("kilojoule").value = x * 1000;
+        document.getElementById("joule").value = x * 1000000;
+        document.getElementById("ergs").value = x * 10000000000000;
+        document.getElementById("electronvolt").value =
+          x * 6241509000000000000000000;
+        document.getElementById("kilocalorie").value = x * 239.0057;
+        document.getElementById("calorie").value = x * 239005.7;
+        document.getElementById("footpound").value = x * 737562.1;
+        document.getElementById("inchpound").value = x * 8850746;
+        document.getElementById("kilowatthour").value = x * 0.2777778;
+        document.getElementById("watthour").value = x * 277.7778;
+        document.getElementById("btu").value = x * 947.8171;
+      }
+
+      /* kilo joule to others */
+      function kj_to_others(x) {
+        document.getElementById("megajoule").value = x * 0.001;
+        document.getElementById("joule").value = x * 1000;
+        document.getElementById("ergs").value = x * 10000000000;
+        document.getElementById("electronvolt").value =
+          x * 6241509000000000000000;
+        document.getElementById("kilocalorie").value = x * 0.2390057;
+        document.getElementById("calorie").value = x * 239.0057;
+        document.getElementById("footpound").value = x * 737.5621;
+        document.getElementById("inchpound").value = x * 8850.746;
+        document.getElementById("kilowatthour").value = x * 0.0002777778;
+        document.getElementById("watthour").value = x * 0.2777778;
+        document.getElementById("btu").value = x * 0.9478171;
+      }
+
+      /* joule to others */
+      function joule_to_others(x) {
+        document.getElementById("megajoule").value = x * 0.000001;
+        document.getElementById("kilojoule").value = x * 0.001;
+        document.getElementById("ergs").value = x * 10000000;
+        document.getElementById("electronvolt").value = x * 6241509000000000000;
+        document.getElementById("kilocalorie").value = x * 0.2390057;
+        document.getElementById("calorie").value = x * 0.0002390057;
+        document.getElementById("footpound").value = x * 0.7375621;
+        document.getElementById("inchpound").value = x * 8.850746;
+        document.getElementById("kilowatthour").value = x * 0.0000002777778;
+        document.getElementById("watthour").value = x * 0.0002777778;
+        document.getElementById("btu").value = x * 0.0009478171;
+      }
+
+      /* ergs to others */
+      function ergs_to_others(x) {
+        document.getElementById("megajoule").value = x * 0.0000000000001;
+        document.getElementById("kilojoule").value = x * 0.0000000001;
+        document.getElementById("joule").value = x * 0.0000001;
+        document.getElementById("electronvolt").value = x * 624150900000;
+        document.getElementById("kilocalorie").value = x * 0.00000000002390057;
+        document.getElementById("calorie").value = x * 0.00000002390057;
+        document.getElementById("footpound").value = x * 0.00000007375621;
+        document.getElementById("inchpound").value = x * 0.0000008850746;
+        document.getElementById("kilowatthour").value =
+          x * 0.00000000000002777778;
+        document.getElementById("watthour").value = x * 0.00000000002777778;
+        document.getElementById("btu").value = x * 0.00000000009478171;
+      }
+
+      /* electron volt to others */
+      function ev_to_others(x) {
+        document.getElementById("megajoule").value =
+          x * 0.0000000000000000000000001602177;
+        document.getElementById("kilojoule").value =
+          x * 0.0000000000000000000001602177;
+        document.getElementById("joule").value =
+          x * 0.0000000000000000001602177;
+        document.getElementById("ergs").value = x * 0.000000000001602177;
+        document.getElementById("kilocalorie").value =
+          x * 0.00000000000000000000003829294;
+        document.getElementById("calorie").value =
+          x * 0.00000000000000000003829294;
+        document.getElementById("footpound").value =
+          x * 0.0000000000000000001181705;
+        document.getElementById("inchpound").value =
+          x * 0.000000000000000001418046;
+        document.getElementById("kilowatthour").value =
+          x * 0.0000000000000000000000000445049;
+        document.getElementById("watthour").value =
+          x * 0.0000000000000000000000445049;
+        document.getElementById("btu").value =
+          x * 0.000000000000000000000181857;
+      }
+
+      /* kilo calorie to others */
+      function kcal_to_others(x) {
+        document.getElementById("megajoule").value = x * 0.004184;
+        document.getElementById("kilojoule").value = x * 4.184;
+        document.getElementById("joule").value = x * 4184;
+        document.getElementById("ergs").value = x * 41840000000;
+        document.getElementById("electronvolt").value =
+          x * 26114480000000000000000;
+        document.getElementById("calorie").value = x * 1000;
+        document.getElementById("footpound").value = x * 3085.96;
+        document.getElementById("inchpound").value = x * 37031.52;
+        document.getElementById("kilowatthour").value = x * 0.001162222;
+        document.getElementById("watthour").value = x * 1.162222;
+        document.getElementById("btu").value = x * 3.965667;
+      }
+
+      /* calorie to others */
+      function calorie_to_others(x) {
+        document.getElementById("megajoule").value = x * 0.000004184;
+        document.getElementById("kilojoule").value = x * 0.004184;
+        document.getElementById("joule").value = x * 4.184;
+        document.getElementById("ergs").value = x * 41840000;
+        document.getElementById("electronvolt").value =
+          x * 26114480000000000000;
+        document.getElementById("kilocalorie").value = x * 0.001;
+        document.getElementById("footpound").value = x * 3.08596;
+        document.getElementById("inchpound").value = x * 37.03152;
+        document.getElementById("kilowatthour").value = x * 0.000001162222;
+        document.getElementById("watthour").value = x * 0.001162222;
+        document.getElementById("btu").value = x * 0.003965667;
+      }
+
+      /* foot pound to others */
+      function ftlb_to_others(x) {
+        document.getElementById("megajoule").value = x * 0.000001355818;
+        document.getElementById("kilojoule").value = x * 0.001355818;
+        document.getElementById("joule").value = x * 1.355818;
+        document.getElementById("ergs").value = x * 13558180;
+        document.getElementById("electronvolt").value = x * 8462350000000000000;
+        document.getElementById("kilocalorie").value = x * 0.0003240483;
+        document.getElementById("calorie").value = x * 0.3240483;
+        document.getElementById("inchpound").value = x * 12;
+        document.getElementById("kilowatthour").value = x * 0.0000003766161;
+        document.getElementById("watthour").value = x * 0.0003766161;
+        document.getElementById("btu").value = x * 0.001285067;
+      }
+
+      /* inch pound to others */
+      function inlb_to_others(x) {
+        document.getElementById("megajoule").value = x * 0.0000001129848;
+        document.getElementById("kilojoule").value = x * 0.0001129848;
+        document.getElementById("joule").value = x * 0.1129848;
+        document.getElementById("ergs").value = x * 1129848;
+        document.getElementById("electronvolt").value = x * 705195900000000000;
+        document.getElementById("kilocalorie").value = x * 0.00002700402;
+        document.getElementById("calorie").value = x * 0.02700402;
+        document.getElementById("footpound").value = x * 0.08333333;
+        document.getElementById("kilowatthour").value = x * 0.00000003138467;
+        document.getElementById("watthour").value = x * 0.00003138467;
+        document.getElementById("btu").value = x * 0.000107089;
+      }
+
+      /* kilowatt hour to others */
+      function kwh_to_others(x) {
+        document.getElementById("megajoule").value = x * 3.6;
+        document.getElementById("kilojoule").value = x * 3600;
+        document.getElementById("joule").value = x * 3600000;
+        document.getElementById("ergs").value = x * 36000000000000;
+        document.getElementById("electronvolt").value =
+          x * 22469430000000000000000000;
+        document.getElementById("kilocalorie").value = x * 860.4207;
+        document.getElementById("calorie").value = x * 860420.7;
+        document.getElementById("footpound").value = x * 2655224;
+        document.getElementById("inchpound").value = x * 31862680;
+        document.getElementById("watthour").value = x * 1000;
+        document.getElementById("btu").value = x * 3412.142;
+      }
+
+      /* watt hour to others */
+      function wh_to_others(x) {
+        document.getElementById("megajoule").value = x * 0.0036;
+        document.getElementById("kilojoule").value = x * 3.6;
+        document.getElementById("joule").value = x * 3600;
+        document.getElementById("ergs").value = x * 36000000000;
+        document.getElementById("electronvolt").value =
+          x * 22469430000000000000000;
+        document.getElementById("kilocalorie").value = x * 0.8604207;
+        document.getElementById("calorie").value = x * 860.4207;
+        document.getElementById("footpound").value = x * 2655.224;
+        document.getElementById("inchpound").value = x * 31862.68;
+        document.getElementById("kilowatthour").value = x * 0.001;
+        document.getElementById("btu").value = x * 3.412142;
+      }
+
+      /* btu to others */
+      function btu_to_others(x) {
+        document.getElementById("megajoule").value = x * 0.001055056;
+        document.getElementById("kilojoule").value = x * 1.055056;
+        document.getElementById("joule").value = x * 1055.056;
+        document.getElementById("ergs").value = x * 10550560000;
+        document.getElementById("electronvolt").value =
+          x * 6585141000000000000000;
+        document.getElementById("kilocalorie").value = x * 0.2521644;
+        document.getElementById("calorie").value = x * 252.1644;
+        document.getElementById("footpound").value = x * 778.1693;
+        document.getElementById("inchpound").value = x * 9338.031;
+        document.getElementById("kilowatthour").value = x * 0.0002930711;
+        document.getElementById("watthour").value = x * 0.2930711;
+      }
+    </script>
+  </body>
+</html>

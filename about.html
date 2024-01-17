@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>HTML</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <style>
+      /* navbar  strt */
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+      .topnav {
+        overflow: hidden;
+        background-color: #000000;
+        display: block;
+      }
+
+      .topnav a {
+        float: left;
+        display: block;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+      }
+
+      .topnav a:hover {
+        background-color: #ffffff;
+        color: black;
+      }
+
+      .topnav a.active {
+        background-color: #0037ff;
+        color: rgb(255, 255, 255);
+      }
+
+      .topnav .icon {
+        display: none;
+
+        top: 10px;
+        right: 0;
+      }
+
+      @media screen and (max-width: 600px) {
+        .topnav a:not(:first-child) {
+          display: none;
+        }
+        .topnav a.icon {
+          float: right;
+          display: block;
+        }
+      }
+
+      @media screen and (max-width: 600px) {
+        .topnav.responsive {
+          position: relative;
+        }
+        .topnav.responsive .icon {
+          position: absolute;
+        }
+        .topnav.responsive a {
+          float: none;
+          display: block;
+          text-align: left;
+        }
+      }
+
+      /* navbar  end */
+
+      .About-us {
+        width: 100%;
+        text-align: center;
+        background-color: #e4ddff;
+        margin-top: 30px;
+        margin-bottom: 30px;
+      }
+      h1 {
+        color: #0400ff;
+        font-size: 35px;
+      }
+      img {
+        border-radius: 50%;
+      }
+
+      p {
+        font-size: 20px;
+      }
+      h3 {
+        text-shadow: 1px;
+      }
+      .fous {
+        padding: 20px;
+        text-align: center;
+        text-decoration: none;
+        margin: 5px 2px;
+        background: rgb(0, 55, 255);
+        color: white;
+        border-radius: 8px;
+        font-size: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- navbar  -->
+    <div class="topnav" id="myTopnav">
+      <a href="index.html">Home</a>
+      <a href="contact.html" >Contact</a>
+      <a href="about.html"class="active">About</a>
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+
+
+    <!-- navbar -->
+    <div class="About-us">
+      <h1>About Us</h1>
+      <img
+        src="https://s3.ap-south-1.amazonaws.com/s3.studytonight.com/tutorials/uploads/pictures/1628677506-101156.png"
+      />
+      <p>
+        Our mission is to empower young Students to be the inventors and
+        creators.
+      </p>
+      <hr />
+      <p>
+        In a world where so much is being done for technology and so little for
+        the environment, education is not even a part of most discussions.
+      </p>
+      <p>
+        We at Studytonight believe that by widening the reach of education, by
+        making it freely available, so much can be achieved.
+      </p>
+      <p>
+        And this journey started in 2013 when a young boy thought "wouldn't it
+        be great, to have a website, with simple tutorials for programming
+        languages, just like a friend would teach you!", and Studytonight was
+        born.
+      </p>
+      <h3>follow us on</h3>
+      <div >
+        <a href="#" class="fa fa-facebook fous"></a>
+        <a href="#" class="fa fa-twitter fous"></a>
+        <a href="#" class="fa fa-linkedin fous"></a>
+      </div>
+    </div>
+    <script>
+      // navbar responaisve cd
+      function myFunction() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+          x.className += " responsive";
+        } else {
+          x.className = "topnav";
+        }
+      }
+    </script>
+  </body>
+</html>

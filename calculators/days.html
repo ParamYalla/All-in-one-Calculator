@@ -1,0 +1,135 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>time converter</title>
+
+    <style>
+      @import url("https://fonts.googleapis.com/css?family=Poppins");
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: #000000;
+      }
+
+      main {
+        width: 70%;
+        margin: 2rem auto;
+        text-align: center;
+        background: #006eff;
+        padding: 1px;
+        border-radius: 4px;
+      }
+
+      main label,
+      main input {
+        display: block;
+        color: #000000;
+        font-size: larger;
+      }
+
+
+      main input {
+        text-align: center;
+        width: 60%;
+        margin: 1rem auto;
+        padding: 5px;
+        font-size: large;
+        background-color: #7888ff;
+      }
+
+      #daysBtn,
+      #hoursBtn,
+      #minutesBtn,
+      #secondsBtn {
+        background: #0011ff;
+        width: 60%;
+        border: 2px solid rgb(0, 51, 255);
+        border-radius: 4px;
+        padding: 4px 9px;
+        text-transform: uppercase;
+        font-weight: bold;
+        color: white;
+      }
+    </style>
+  </head>
+
+  <body onload="attachEventsListeners()">
+    <main>
+      <h1>Time Converter</h1>
+      <div>
+        <label for="days">Days: </label>
+        <input type="text" id="days" />
+        <input id="daysBtn" type="button" value="Convert" />
+      </div>
+      <div>
+        <label for="hours">Hours: </label>
+        <input type="text" id="hours" />
+        <input id="hoursBtn" type="button" value="Convert" />
+      </div>
+      <div>
+        <label for="minutes">Minutes: </label>
+        <input type="text" id="minutes" />
+        <input id="minutesBtn" type="button" value="Convert" />
+      </div>
+      <div>
+        <label for="seconds">Seconds: </label>
+        <input type="text" id="seconds" />
+        <input id="secondsBtn" type="button" value="Convert" />
+      </div>
+    </main>
+  </body>
+
+  <script>
+    function attachEventsListeners() {
+      let ratios = {
+        days: 1,
+        hours: 24,
+        minutes: 1440,
+        seconds: 86400,
+      };
+
+      function convertValue(value, from) {
+        const inDays = value / ratios[from];
+        return {
+          days: inDays,
+          hours: inDays * ratios.hours,
+          minutes: inDays * ratios.minutes,
+          seconds: inDays * ratios.seconds,
+        };
+      }
+
+      const daysDiv = document.getElementById("days");
+      const hoursDiv = document.getElementById("hours");
+      const minutesDiv = document.getElementById("minutes");
+      const secondsDiv = document.getElementById("seconds");
+
+      document.getElementById("daysBtn").addEventListener("click", convertTime);
+      document
+        .getElementById("hoursBtn")
+        .addEventListener("click", convertTime);
+      document
+        .getElementById("minutesBtn")
+        .addEventListener("click", convertTime);
+      document
+        .getElementById("secondsBtn")
+        .addEventListener("click", convertTime);
+
+      function convertTime(e) {
+        let value = Number(
+          e.target.parentNode.querySelector('input[type="text"]').value
+        );
+        let from = e.target.parentNode.querySelector('input[type="text"]').id;
+        const convertedValues = convertValue(value, from);
+        display(convertedValues);
+      }
+
+      function display(valuesToDisplay) {
+        daysDiv.value = valuesToDisplay.days;
+        hoursDiv.value = valuesToDisplay.hours;
+        minutesDiv.value = valuesToDisplay.minutes;
+        secondsDiv.value = valuesToDisplay.seconds;
+      }
+    }
+  </script>
+</html>
